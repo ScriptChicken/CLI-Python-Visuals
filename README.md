@@ -19,15 +19,15 @@ s        - The character (or characters) that make up the outside frame lines.
 
  Example #1 - visuals.opt_frame(var,title,20,"=","|!Game!|")
 
-  |!Game!|========================================================|!Game!|
-  |!Game!|                    Super Fun Game!                     |!Game!|
-  |!Game!|========================================================|!Game!|
-  |!Game!|========================================================|!Game!|
-  |!Game!|                                                        |!Game!|
-  |!Game!|                      1) New Game                       |!Game!|
-  |!Game!|                        2) Exit                         |!Game!|
-  |!Game!|                                                        |!Game!|
-  |!Game!|========================================================|!Game!|
+|!Game!|========================================================|!Game!|
+|!Game!|                    Super Fun Game!                     |!Game!|
+|!Game!|========================================================|!Game!|
+|!Game!|========================================================|!Game!|
+|!Game!|                                                        |!Game!|
+|!Game!|                      1) New Game                       |!Game!|
+|!Game!|                        2) Exit                         |!Game!|
+|!Game!|                                                        |!Game!|
+|!Game!|========================================================|!Game!|
 
 
  opt_bar, used as a sort of "loading" screen.  This tool displays the 'title' text and then starts an accending array of a
