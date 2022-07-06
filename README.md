@@ -45,3 +45,4 @@ clr_scn - not required - tells the function to clear the screen before running o
  Example #1 - opt_bar(title="Loading",length=15,char="/",speed=.5,clr_scn=1)
 
  Output - Loading////////////////////
+ end
