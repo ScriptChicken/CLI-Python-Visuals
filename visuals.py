@@ -1,12 +1,15 @@
 import os
 import time
 
+# Opt_Visuals v1.1
+
+
 # opt_frame, used with opt_title or without is used to create customizable frames around text.  This creates
 # a more appealing looking CLI application and segregates data in a more orginazed way. An explanation of each input
 # is below:
 
-# opt_frame(list1,title,length,  q,   s,clr_scn,color,txt_color,ttl_color)
-#           list^  str^  int^ str^ str^   int^  str^    str^     str^
+# opt_frame(list1,title,length,  q,   s,clr_scn,color,txt_color,ttl_color,align)
+#           list^  str^  int^ str^ str^   int^  str^    str^     str^    str^
 
 # list1    - The list of variables that will make up the opt_box frame.  Used for multiline frames.
 # title    - Used to create the single line title box text.
@@ -17,6 +20,7 @@ import time
 #color     - choose a color (see list below) to color the frame - default is 'white'
 #txt_color - choose a color for the text - default is 'white'
 #ttl_color - choose a color for the title text - default is 'white'
+#align     - Choose if you would like to align your list "left".  (Good for menus)
 
 # Example #1 - visuals.opt_frame(var,title,20,"=","|!Game!|")
 
@@ -47,15 +51,16 @@ import time
 
 # Output - Loading////////////////////
 
+ctr_lgth = 0
 
-
-def opt_frame(list1,title="0", length=10, q="=", s="||",clr_scn=1,color="0",txt_color="0",ttl_color="0"):
+def opt_frame(list1,title="0", length=10, q="=", s="||",clr_scn=1,color="0",txt_color="0",ttl_color="0",align="",cstm_lgth=0):
 	
 	#variables
 	title_lgth = 0
 	list_lgth = 0
-	ctr_lgth = 0
-
+	global ctr_lgth
+	
+	#if a color is passed, get the values.
 	if color != "0":
 		setColor(color)
 
@@ -69,22 +74,40 @@ def opt_frame(list1,title="0", length=10, q="=", s="||",clr_scn=1,color="0",txt_
 		os.system('cls')
 		print("\n")
 
-
+	#Checks to see what the lengths of both the title are and the longest list entry is.  This is used to determine which
+	#entry will act as the "ctr_lgth" value.
 	title,title_lgth = doWork(title)
 	list1,list_lgth = doWork(list1)
-
+	
 	if (title_lgth > list_lgth):
 		ctr_lgth = title_lgth
 	else:
+		#if statement used if a custom length was set.  This will be used for line formatting, but isn't operable in this
+		#version.
+		if cstm_lgth == 0:
 			ctr_lgth = list_lgth
+		else:
+			ctr_lgth = cstm_lgth
+	
+	#make the title frame
 	opt_title(title, length, q, s, ctr_lgth)
-	opt_box(list1, length, q, s, ctr_lgth)
+	# if the align is set to left, run the align left function.
+	if align == "left":
+		opt_box_left(list1, length, q, s, ctr_lgth,list_lgth)
+	# else run the align center function (default)
+	else:
+		opt_box(list1, length, q, s, ctr_lgth)
 	
 
 
 #opt_title is either used by itself to create a title bar (single line string) or coupled with the opt_frame to create a title
 #with a opt_box for the main data
-def opt_title(title, length=10, q="=", s="||", ctr_lgth=0,title_lgth=0):
+def opt_title(title, length=10, q="=", s="||", ctrlgth=10,title_lgth=0,ttl=""):
+	global ctr_lgth
+
+	# if a ttl_color is passed, assign the value
+	if ttl != "":
+		setTtlColor(ttl)
 
 	#variables
 	void_lgth = 0
@@ -147,6 +170,33 @@ def opt_box(list1, length=10, q="=", s="||",ctr_lgth=0):
 	#last of the printing for the frame, after the data.
 	print(s + " " * void_lgth + s)
 	print(s + q * length + q * ctr_lgth + q * length + s)
+
+
+def opt_box_left(list1, length=10, q="=", s="||",ctr_lgth=0,list_lgth=0):
+	
+	gap_lgth = 0
+
+	#variables
+	void_lgth = 0
+
+	#calculate the void length, this is used for the void space below and over the actual text
+	void_lgth = (length * 2) + int(ctr_lgth)  
+	first_lgth = (void_lgth - list_lgth) / 2
+	#start of printing the frame.
+	print(s + q * length + q * ctr_lgth + q * length + s)
+	print(s + " " * void_lgth + s)
+	
+	#loop through the list and print each row
+	for row in list1:
+		x = len(row)	
+		t_void = ctr_lgth - x
+		sec_lgth = first_lgth + (list_lgth - x)
+		print(s + " " * int(first_lgth) + C.txt + row + C.frame + " " * int(sec_lgth) + s)
+	
+	#last of the printing for the frame, after the data.
+	print(s + " " * void_lgth + s)
+	print(s + q * length + q * ctr_lgth + q * length + s)
+
 
 
 # if opt_box variables do not match even or odds, this function adds a space to the end of the odds so all entries match
