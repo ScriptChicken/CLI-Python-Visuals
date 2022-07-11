@@ -1,10 +1,10 @@
-# Opt_Visuals - by ScriptChicken
+# Opt_Visuals v1.5 - by ScriptChicken
 
  opt_frame, used with opt_title or without is used to create customizable frames around CLI prints.  This creates
  a more appealing look to your CLI application and segregates data in a more orginazed way. An explanation of each input
  is below:
 
- opt_frame( list1, title, length, q, s, clr_scn, color, txt_color, ttl_color )
+ opt_frame( list1, title, length, q, s, clr_scn, color, txt_color, ttl_color, align )
 
 
 list1    -  Required - The list of variables that will make up the opt_box frame.  Used for multiline frames.
@@ -16,8 +16,9 @@ s        - The character (or characters) that make up the outside frame lines.
 #color     - choose a color (see list below) to color the frame - default is 'white'
 #txt_color - choose a color for the text - default is 'white'
 #ttl_color - choose a color for the title text - default is 'white'
+#align     - Choose if you would like to align your list "left".  (Good for menus)
 
-See py file for examples.
+See py file for opt_frame examples.
 
 
  opt_bar, used as a sort of "loading" screen.  This tool displays the 'title' text and then starts an accending array of a
