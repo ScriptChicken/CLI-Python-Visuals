@@ -1,4 +1,4 @@
-# Visuals - by ScriptChicken
+# Opt_Visuals - by ScriptChicken
 
  opt_frame, used with opt_title or without is used to create customizable frames around CLI prints.  This creates
  a more appealing look to your CLI application and segregates data in a more orginazed way. An explanation of each input
